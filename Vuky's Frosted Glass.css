@@ -1,0 +1,134 @@
+/**
+ * @name Frosted Glass
+ * @author Gibbu#1211
+ * @version 2.2.0
+ * @description Display your picture of choice with adjustable blur and brightness. Dark theme is required.
+ * @invite ZHthyCw
+ * @authorId 174868361040232448
+ * @source https://github.com/DiscordStyles/FrostedGlass
+ * @website https://gibbu.me/
+*/
+
+@import url('https://discordstyles.github.io/FrostedGlass/dist/FrostedGlass.css');
+
+/* Old Windows titlebar - remove this @import if you wish to use default titlebar */
+@import url("https://discordstyles.github.io/Addons/windows-titlebar.css");
+
+:root {
+  /*
+   * Background image variables
+   */
+  --background-image: url("https://i.imgur.com/kYW2H5C.jpg"); /* Main background image */
+  --background-image-blur: 5px; /* Blur intensity of --background-image */
+  --background-image-size: cover; /* Size of the background image */
+  --background-image-position: center; /* Position of background image */
+  
+  /*
+   * User Popout variables
+   */
+  --popout-image: var(--background-image); /* Background image for popouts and modals */
+  --popout-image-blur: 5px; /* Blur intensity of --popout-image */
+  --popout-image-size: cover; /* Size of the popout/modal image */
+  --popout-image-position: center; /* Position of popout/modal image */
+  
+  /*
+   * Modal & Popout variables
+   */
+  --overlay-image: var(--background-image); /* Background image for popouts and modals */
+  --overlay-image-blur: var(--background-image-blur); /* Blur intensity of --overlay-image */
+  --overlay-image-size: var(--background-image-size); /* Size of the popout/modal image */
+  --overlay-image-position: var(--background-image-position); /* Position of popout/modal image */
+  
+  /*
+   * Home image variables
+   */
+  --home-button-image: url("https://imgur.com/ibuGR5n.png"); /* Home button image */
+  --home-button-size: 60%; /* Size of the home button image */
+  --home-button-position: center; /* Position of home button image */
+  
+  /*
+   * Brightness variables
+   */
+  --serverlist-brightness: 0; /* Brightness for serverlist */ /* DO NOT TOUCH THE ZERO INSTEAD EDIT THE DISCOVER BRIGHTNESS HERE AND BELLOW BECAUSE IT IS BROKEN WHEN DISCORD GOT UPDATED AND ADDED THE DISCOVER BUTTON */
+  --left-brightness: 0.8; /* Channels and DM list brightness */
+  --middle-brightness: 0.6; /* Chat brightness */
+  --right-brightness: 0; /* Members and Now Playing brightness */
+  --overlay-brightness: 0.75; /* Brightness for popouts and modals */
+  --discover-brightness: 0.8; /* Brightness for Discover button */
+
+  /*
+   * Gradient variables
+   */
+  --gradient-primary: 103, 58, 183;
+  --gradient-secondary: 63, 81, 181;
+  --gradient-direction: 320deg;
+  
+  /*
+   * Tint variables
+   */
+  --tint-colour: 255, 51, 159;
+  --tint-brightness: 0;
+  
+  /*
+   * Other variables 
+   */
+  --window-padding: 0px;
+  --window-roundness: 0px;
+  --scrollbar-colour: rgb(255, 255, 255, 0.05);
+  --link-colour: #c053ff;
+  --font: "gg sans";
+  
+  /*
+   * ~~DO NOT TOUCH~~
+   */
+  --update-notice-1: none;
+}
+
+/* Additional styles for the Discover button */
+button[data-list-item-id="guildsnav___discover"] {
+  filter: brightness(var(--discover-brightness)) !important; /* Adjust brightness for the button */
+}
+
+/* Dimmed background for the Discover button layer */
+button[data-list-item-id="guildsnav___discover"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75); /* Adjust this for dimming effect */
+  pointer-events: none;
+}
+
+:root {
+  --discover-brightness: 0.8; /* Adjust brightness for Discover button | 0 - 1 */
+  --discover-background-dim: rgba(0, 0, 0, 0.75); /* Dim effect for Discover area */
+}
+
+/* Target the Discover button itself */
+button[data-list-item-id="guildsnav___discover"] {
+  filter: brightness(var(--discover-brightness)) !important;
+  position: relative; /* Ensures proper positioning for pseudo-elements */
+  z-index: 2; /* Ensure it sits above background fixes */
+}
+
+/* Add a dimmed background to the Discover button */
+button[data-list-item-id="guildsnav___discover"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--discover-background-dim);
+  z-index: 1; /* Sits behind the button content */
+  pointer-events: none;
+}
+
+/* Target the container around and below the Discover button */
+[data-list-id="guildsnav"] {
+  background-color: var(--discover-background-dim) !important; /* Dim the entire vertical bar */
+  z-index: 0; /* Ensure it's below everything else */
+}
+
+/* Optional: Remove extra spacing below the Discover button */
+[data-list-id="guildsnav"] > .scroller-2TZvBN {
+  padding-bottom: 0 !important; /* Adjust spacing to remove empty bar */
+  margin-bottom: 0 !important; /* Adjust margin to ensure no gap */
+}
+
